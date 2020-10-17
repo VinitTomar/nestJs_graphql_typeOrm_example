@@ -1,15 +1,28 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AppResolver } from './app.resolver';
+import { AuthorModule } from './author/author.module';
 
 @Module({
   imports: [
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'ec2-34-237-247-76.compute-1.amazonaws.com',
+      port: 5432,
+      username: 'vghyrwvbckxdxr',
+      password: '271a9469262c17dec334bce971d4fa25acaf87401c38769e418d9de0999fec40',
+      database: 'dfk1mc0kcupqi0',
+      autoLoadEntities: true,
+      synchronize: true,
+      ssl: true,
+    }),
     GraphQLModule.forRoot({
       autoSchemaFile: 'src/schem.gql'
-    })
+    }),
+    AuthorModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [AppResolver],
 })
 export class AppModule { }

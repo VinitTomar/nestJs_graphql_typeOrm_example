@@ -1,0 +1,36 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Author {
+  id: ID!
+  firstName: String
+  lastName: String
+}
+
+type Query {
+  info: String!
+  authors: [Author]!
+  author(id: ID!): Author
+}
+
+type Mutation {
+  createAuthor(CreateAuthor: CreateAuthorRequest!): Author!
+  updateAuthor(UpdateAuthor: UpdateAuthorRequest!): Author!
+  deleteAuthor(DeleteAuthor: DeleteAuthorRequest!): Author!
+}
+
+input CreateAuthorRequest {
+  firstName: String
+  lastName: String
+}
+
+input UpdateAuthorRequest {
+  id: ID!
+  firstName: String
+  lastName: String
+}
+
+input DeleteAuthorRequest {
+  id: ID!
+}
