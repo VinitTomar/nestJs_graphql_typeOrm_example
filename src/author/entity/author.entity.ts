@@ -1,5 +1,5 @@
 import { PostEntity } from "src/post/entity/post.entity";
-import { Post, Posts } from "src/post/payload/post";
+import { Posts } from "src/post/payload/post";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Author } from "../models/author.model";
 

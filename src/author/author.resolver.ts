@@ -1,5 +1,4 @@
 import { Args, ID, Mutation, Parent, Query, ResolveField, Resolver } from "@nestjs/graphql";
-import { Post } from "src/post/payload/post";
 import { AuthorService } from "./author.service";
 import { Author } from "./models/author.model";
 import { CreateAuthorRequest } from "./payload/create-author.request";
