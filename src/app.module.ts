@@ -3,6 +3,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppResolver } from './app.resolver';
 import { AuthorModule } from './author/author.module';
+import { PostModule } from './post/post.module';
 
 @Module({
   imports: [
@@ -18,9 +19,11 @@ import { AuthorModule } from './author/author.module';
       ssl: true,
     }),
     GraphQLModule.forRoot({
-      autoSchemaFile: 'src/schem.gql'
+      autoSchemaFile: 'src/schem.gql',
+      path: 'api'
     }),
-    AuthorModule
+    AuthorModule,
+    PostModule
   ],
   controllers: [],
   providers: [AppResolver],

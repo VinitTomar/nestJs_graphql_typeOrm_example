@@ -6,18 +6,31 @@ type Author {
   id: ID!
   firstName: String
   lastName: String
+  posts: [Post]
+}
+
+type Post {
+  id: ID!
+  title: String
+  description: String
+  author: Author
 }
 
 type Query {
   info: String!
   authors: [Author]!
   author(id: ID!): Author
+  Posts: [Post]!
+  Post(id: ID!): Post!
 }
 
 type Mutation {
   createAuthor(CreateAuthor: CreateAuthorRequest!): Author!
   updateAuthor(UpdateAuthor: UpdateAuthorRequest!): Author!
   deleteAuthor(DeleteAuthor: DeleteAuthorRequest!): Author!
+  createPost(CreatePost: CreatePost!): Post!
+  updatePost(UpdatePost: UpdatePost!): Post!
+  deletePost(DeletePost: DeletePost!): Post!
 }
 
 input CreateAuthorRequest {
@@ -32,5 +45,21 @@ input UpdateAuthorRequest {
 }
 
 input DeleteAuthorRequest {
+  id: ID!
+}
+
+input CreatePost {
+  title: String!
+  description: String!
+  authorId: ID!
+}
+
+input UpdatePost {
+  id: ID!
+  title: String
+  description: String
+}
+
+input DeletePost {
   id: ID!
 }

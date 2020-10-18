@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { PostEntity } from "src/post/entity/post.entity";
+import { Post, Posts } from "src/post/payload/post";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Author } from "../models/author.model";
 
 
@@ -14,4 +16,7 @@ export class AuthorEntity extends Author {
 
   @Column()
   lastName: string;
+
+  @OneToMany(() => PostEntity, (post: PostEntity) => post.author)
+  posts: Posts;
 }

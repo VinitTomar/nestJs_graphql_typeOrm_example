@@ -1,4 +1,5 @@
-import { Args, ID, Int, Mutation, Query, Resolver } from "@nestjs/graphql";
+import { Args, ID, Mutation, Parent, Query, ResolveField, Resolver } from "@nestjs/graphql";
+import { Post } from "src/post/payload/post";
 import { AuthorService } from "./author.service";
 import { Author } from "./models/author.model";
 import { CreateAuthorRequest } from "./payload/create-author.request";
@@ -6,9 +7,8 @@ import { DeleteAuthorRequest } from "./payload/delete-author.request";
 import { UpdateAuthorRequest } from "./payload/update-author.request";
 
 
-@Resolver()
+@Resolver(() => Author)
 export class AuthorResolver {
-
 
   constructor(
     private _authorService: AuthorService
@@ -37,6 +37,11 @@ export class AuthorResolver {
   @Mutation(() => Author, { name: 'deleteAuthor' })
   async deleteAuthor(@Args('DeleteAuthor') deleteAuthor: DeleteAuthorRequest) {
     return await this._authorService.delete(deleteAuthor.id);
+  }
+
+  @ResolveField()
+  async posts(@Parent() author: Author) {
+    return author.posts;
   }
 
 }

@@ -11,6 +11,9 @@ import { AuthorEntity } from './entity/author.entity';
   providers: [
     AuthorResolver,
     AuthorService
+  ],
+  exports: [
+    AuthorService
   ]
 })
 export class AuthorModule { }
