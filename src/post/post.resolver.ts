@@ -1,4 +1,6 @@
+import { UseGuards } from "@nestjs/common";
 import { Args, ID, Mutation, Parent, Query, ResolveField, Resolver } from "@nestjs/graphql";
+import { JwtAuthGuard } from "src/security/jwt-auth.guard";
 import { CreatePost } from "./payload/create-post";
 import { DeletePost } from "./payload/delete-post";
 import { Post } from "./payload/post";
@@ -7,6 +9,7 @@ import { PostService } from "./post.service";
 
 
 @Resolver(() => Post)
+@UseGuards(JwtAuthGuard)
 export class PostResolver {
 
   constructor(

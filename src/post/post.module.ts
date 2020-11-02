@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { AuthorModule } from "src/author/author.module";
+import { JwtAuthGuard } from "src/security/jwt-auth.guard";
 import { PostEntity } from "./entity/post.entity";
 import { PostResolver } from "./post.resolver";
 import { PostService } from "./post.service";
@@ -13,7 +14,9 @@ import { PostService } from "./post.service";
   ],
   providers: [
     PostResolver,
-    PostService
-  ]
+    PostService,
+    JwtAuthGuard
+  ],
+  // controllers: [PostResolver]
 })
 export class PostModule { }
